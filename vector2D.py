@@ -34,6 +34,9 @@ class Vector2D():
     def component(self, other):
         return self.dot(other) / other.mag()
 
+    def distance(self, other):
+        return (self - other).mag()
+
 # Special functions
 
     def __add__(self, other):
