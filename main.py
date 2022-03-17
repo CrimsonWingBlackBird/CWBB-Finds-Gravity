@@ -8,6 +8,7 @@ from gravity import Gravity
 starList = []
 
 
+# Initializes the environment.
 def initialize():
     global starList
     numberOfStars = 50
@@ -19,6 +20,7 @@ def initialize():
         starList.append(newStar)
 
 
+# Performs attraction between stars.
 def attract():
     global starList
     combinationList = itertools.combinations(starList, 2)
@@ -26,6 +28,7 @@ def attract():
         Gravity.gravity(combo[0], combo[1])
 
 
+# Updates the star's position and velocity, resets accel to 0.
 def updatePosition(star: Star):
     star.velocity += star.acceleration
     star.acceleration = Vector2D(0, 0)
