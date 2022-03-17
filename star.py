@@ -12,4 +12,7 @@ class Star():
     def merge(self, other):
         newMass = self.mass + other.mass
         newPosition = (self.position + other.position) / 2
-        return Star(newMass, newPosition)
+        newVelocity = (self.velocity + other.velocity) / 2
+        newStar = Star(newMass, newPosition)
+        newStar.velocity = newVelocity
+        return newStar
