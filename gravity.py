@@ -9,12 +9,11 @@ class Gravity():
 
     def gravity(star1: Star, star2: Star):
         bigG = 6.674e-3
-        distance = star1.position.distance(star2.position)
-        force = bigG * (star1.mass * star2.mass) / (distance ** 2)
-
-        acccelDirection = (star2.position - star1.position).normalize()
-        star1.acceleration += (force / star1.mass)*acccelDirection
-        star2.acceleration += (force / star2.mass)*(-acccelDirection)
+        directionVector = star2.position - star1.position
+        force = bigG * directionVector * \
+            (star1.mass * star2.mass) / directionVector.mag() ** 3
+        star1.acceleration += force / star1.mass
+        star2.acceleration -= force / star2.mass
 
 
 starList = []
