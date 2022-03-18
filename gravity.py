@@ -22,9 +22,9 @@ starList = []
 # Initializes the environment.
 def initialize():
     global starList
-    numberOfStars = 100
+    numberOfStars = 50
     for star in range(numberOfStars):
-        mass = random.randint(1, 500)
+        mass = random.uniform(0.1, 500)
         position = Vector2D(random.randint(250, 750), random.randint(250, 750))
         newStar = Star(mass, position)
         starList.append(newStar)

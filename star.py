@@ -14,7 +14,8 @@ class Star():
     def merge(self, other):
         newMass = self.mass + other.mass
         newPosition = (self.position + other.position) / 2
-        newVelocity = (self.velocity + other.velocity) / 2
+        newVelocity = (self.velocity * self.mass
+                       + other.velocity * other.mass) / newMass
         newStar = Star(newMass, newPosition)
         newStar.velocity = newVelocity
         newStar.radius = math.log(newStar.mass, 4)
