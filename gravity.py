@@ -48,7 +48,7 @@ def updatePosition(canvas):
         star.position += star.velocity
         star.show(canvas)
 
-
+# Merges stars.
 def mergeStars():
     global starList
     combinationList = itertools.combinations(starList, 2)
