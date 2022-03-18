@@ -8,12 +8,13 @@ import math
 class Gravity():
 
     def gravity(star1: Star, star2: Star):
-        bigG = 6.674e-11
+        bigG = 6.674e-3
         distance = star1.position.distance(star2.position)
         force = bigG * (star1.mass * star2.mass) / (distance ** 2)
 
-        star1.acceleration += (force / star1.mass)
-        star2.acceleration += (force / star2.mass)
+        acccelDirection = (star2.position - star1.position).normalize()
+        star1.acceleration += (force / star1.mass)*acccelDirection
+        star2.acceleration += (force / star2.mass)*(-acccelDirection)
 
 
 starList = []
@@ -39,12 +40,13 @@ def attract():
 
 
 # Updates the star's position and velocity, resets accel to 0.
-def updatePosition():
+def updatePosition(canvas):
     global starList
     for star in starList:
         star.velocity += star.acceleration
         star.acceleration = Vector2D(0, 0)
         star.position += star.velocity
+        star.show(canvas)
 
 
 def mergeStars():
@@ -64,12 +66,9 @@ def mergeStars():
                 starList.append(newStar)
 
 
-initialize()
-for x in range(0, 300):
-    print(len(starList))
+def simulation(canvas):
     attract()
-    print(starList[0].position)
-    updatePosition()
+    updatePosition(canvas)
     previousLength = 0
     currentLength = len(starList)
     while previousLength != currentLength:  # Merges stars until stable
