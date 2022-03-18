@@ -23,10 +23,10 @@ starList = []
 # Initializes the environment.
 def initialize():
     global starList
-    numberOfStars = 50
+    numberOfStars = 100
     for star in range(numberOfStars):
         mass = random.randint(1, 500)
-        position = Vector2D(random.randint(0, 500), random.randint(0, 500))
+        position = Vector2D(random.randint(250, 750), random.randint(250, 750))
         newStar = Star(mass, position)
         starList.append(newStar)
 
@@ -49,6 +49,8 @@ def updatePosition(canvas):
         star.show(canvas)
 
 # Merges stars.
+
+
 def mergeStars():
     global starList
     combinationList = itertools.combinations(starList, 2)
