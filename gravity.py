@@ -74,7 +74,7 @@ def destroy_distant_stars():
     global starList
     starList_copy = starList.copy()
     for star in starList_copy:
-        if star.position.mag() >= 1500:
+        if (star.position - Vector2D(500, 500)).mag() >= 1500:
             starList.remove(star)
 
 
