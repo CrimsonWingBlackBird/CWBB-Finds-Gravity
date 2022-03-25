@@ -26,7 +26,10 @@ def initialize():
     for star in range(numberOfStars):
         mass = random.uniform(0.1, 500)
         position = Vector2D(random.randint(250, 750), random.randint(250, 750))
+        velocity = Vector2D(random.uniform(-0.5, 0.5),
+                            random.uniform(-0.5, 0.5))
         newStar = Star(mass, position)
+        newStar.velocity = velocity
         starList.append(newStar)
 
 
