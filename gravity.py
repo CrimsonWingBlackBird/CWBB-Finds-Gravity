@@ -70,7 +70,16 @@ def mergeStars():
                 starList.append(newStar)
 
 
+def destroy_distant_stars():
+    global starList
+    starList_copy = starList.copy()
+    for star in starList_copy:
+        if star.position.mag() >= 1500:
+            starList.remove(star)
+
+
 def simulation(canvas):
+    destroy_distant_stars()
     attract()
     updatePosition(canvas)
     previousLength = 0
