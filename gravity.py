@@ -63,7 +63,7 @@ def mergeStars():
             else:
                 bigStar = combos[1]
             if combos[0].position.distance(combos[1].position) <= \
-                    math.log(bigStar.mass, 4):
+                    bigStar.radius:
                 newStar = combos[0].merge(combos[1])
                 starList.remove(combos[0])
                 starList.remove(combos[1])

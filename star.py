@@ -9,7 +9,7 @@ class Star():
         self.position = position
         self.velocity = Vector2D(0, 0)
         self.acceleration = Vector2D(0, 0)
-        self.radius = math.log(self.mass, 4)
+        self.radius = self.mass ** 0.25
 
     def merge(self, other):
         newMass = self.mass + other.mass
@@ -19,7 +19,7 @@ class Star():
                        + other.velocity * other.mass) / newMass
         newStar = Star(newMass, newPosition)
         newStar.velocity = newVelocity
-        newStar.radius = math.log(newStar.mass, 4)
+        newStar.radius = newStar.mass ** 0.25
         return newStar
 
     def show(self, canvas):
