@@ -17,17 +17,19 @@ class Gravity():
 
 
 starList = []
-
+# com_previous = Vector2D(0, 0)
 
 # Initializes the environment.
+
+
 def initialize():
     global starList
     numberOfStars = 50
     for star in range(numberOfStars):
         mass = random.uniform(0.1, 500)
         position = Vector2D(random.randint(250, 750), random.randint(250, 750))
-        velocity = Vector2D(random.uniform(-0.5, 0.5),
-                            random.uniform(-0.5, 0.5))
+        velocity = Vector2D(random.gauss(0, 0.25),
+                            random.gauss(0, 0.25))
         newStar = Star(mass, position)
         newStar.velocity = velocity
         starList.append(newStar)
@@ -70,6 +72,17 @@ def mergeStars():
                 starList.append(newStar)
 
 
+def find_center_mass():
+    global starList
+    com_positions = Vector2D(0, 0)
+    com_masses = 0
+    for star in starList:
+        com_positions += star.position * star.mass
+        com_masses += star.mass
+    com = com_positions / com_masses
+    return com
+
+
 def destroy_distant_stars():
     global starList
     starList_copy = starList.copy()
@@ -79,6 +92,7 @@ def destroy_distant_stars():
 
 
 def simulation(canvas):
+    # global com_previous
     destroy_distant_stars()
     attract()
     updatePosition(canvas)
@@ -88,3 +102,7 @@ def simulation(canvas):
         mergeStars()
         previousLength = currentLength
         currentLength = len(starList)
+    com = find_center_mass()
+    # print("Peculilar velocity: " + str(com-com_previous))
+    # com_previous = com
+    canvas.create_rectangle(com.x - 2.5, com.y - 2.5, com.x + 2.5, com.y + 2.5)
