@@ -1,4 +1,4 @@
-from tkinter import *
+import tkinter
 import gravity
 
 # Sets the size of the simulation environment
@@ -6,7 +6,7 @@ sizeX = 1000
 sizeY = 1000
 
 # Makes the window
-root = Tk()
+root = tkinter.Tk()
 root.title('GravitySim')
 
 
@@ -16,7 +16,7 @@ def app(canvas):
     root.after(25, lambda: app(canvas))
 
 
-c = Canvas(root, width=sizeX, height=sizeY, bd=5, bg="white")
+c = tkinter.Canvas(root, width=sizeX, height=sizeY, bd=5, bg="white")
 c.grid(row=0, column=0)
 gravity.initialize()
 app(c)

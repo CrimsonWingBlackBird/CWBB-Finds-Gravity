@@ -2,7 +2,6 @@ from star import Star
 from vector2D import Vector2D
 import itertools
 import random
-import math
 
 
 class Gravity():

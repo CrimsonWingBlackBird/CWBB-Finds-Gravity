@@ -1,5 +1,4 @@
 from vector2D import Vector2D
-import math
 
 
 class Star():
